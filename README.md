@@ -31,8 +31,8 @@ Usage
 ### Read
 
     db.collection("myCollection", function (err, collection) {
-        collection.findOne("myId", function (err, item) {
-            console.log(item);
+        collection.findOne("myId", function (err, doc) {
+            console.log(doc);
         });
     });
 
@@ -41,8 +41,8 @@ Usage
     db.collection("myCollection", function (err, collection) {
         collection.find({
             name: "Ming"
-        }, function (err, items) {
-            console.log(items);
+        }, function (err, docs) {
+            console.log(docs);
         });
     });
 
@@ -51,18 +51,18 @@ Usage
             sort: "name",
             limit: 2,
             skip: 2
-        }, function (err, items) {
-            console.log(items);
+        }, function (err, docs) {
+            console.log(docs);
         });
     });
 
 ### Create
 
-    item = {
+    doc = {
         name: "Ming"
     };
     db.collection("myCollection", function (err, collection) {
-        collection.insert(item, function (err, response) {
+        collection.insert(doc, function (err, response) {
             console.log(response.id);
         });
     });

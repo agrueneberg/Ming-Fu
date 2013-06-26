@@ -80,9 +80,9 @@
                             username: options.username,
                             password: options.password
                         }, function (err, res) {
-                            var items;
-                            items = JSON.parse(res.body);
-                            callback(err, items);
+                            var docs;
+                            docs = JSON.parse(res.body);
+                            callback(err, docs);
                         });
                     },
                     findOne: function (id, callback) {
@@ -97,14 +97,14 @@
                             callback(err, rep);
                         });
                     },
-                    insert: function (item, callback) {
+                    insert: function (doc, callback) {
                         ajax({
                             method: "POST",
                             url: options.endpoint + "/" + collection,
                             headers: {
                                 "Content-Type": "application/json"
                             },
-                            body: JSON.stringify(item),
+                            body: JSON.stringify(doc),
                             username: options.username,
                             password: options.password
                         }, function (err, res) {
