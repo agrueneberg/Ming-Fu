@@ -26,6 +26,7 @@ Usage
         endpoint: "myDeployment",
         username: "myUsername",
         password: "myPassword"
+        mongodb: "mongodb://localhost/test"
     });
 
 ### Read

@@ -19,6 +19,9 @@
         if (options.username && options.password) {
             xhr.setRequestHeader("Authorization", "Basic " + btoa(options.username + ":" + options.password));
         }
+        if (options.mongodb) {
+            xhr.setRequestHeader("X-Connection-String", options.mongodb);
+        }
         Object.keys(options.headers || {}).forEach(function (name) {
             xhr.setRequestHeader(name, options.headers[name]);
         });
@@ -78,7 +81,8 @@
                             },
                             body: JSON.stringify(query),
                             username: options.username,
-                            password: options.password
+                            password: options.password,
+                            mongodb: options.mongodb
                         }, function (err, res) {
                             var docs;
                             docs = JSON.parse(res.body);
@@ -90,7 +94,8 @@
                             method: "GET",
                             url: options.endpoint + "/" + collection + "/" + id,
                             username: options.username,
-                            password: options.password
+                            password: options.password,
+                            mongodb: options.mongodb
                         }, function (err, res) {
                             var rep;
                             rep = JSON.parse(res.body);
@@ -106,7 +111,8 @@
                             },
                             body: JSON.stringify(doc),
                             username: options.username,
-                            password: options.password
+                            password: options.password,
+                            mongodb: options.mongodb
                         }, function (err, res) {
                             callback(err, {
                                 id: res.headers.location.substring(("/" + collection + "/").length, res.headers.location.length)
@@ -118,7 +124,8 @@
                             method: "DELETE",
                             url: options.endpoint + "/" + collection + "/" + id,
                             username: options.username,
-                            password: options.password
+                            password: options.password,
+                            mongodb: options.mongodb
                         }, function (err, res) {
                             callback(err);
                         });
