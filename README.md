@@ -68,6 +68,19 @@ Usage
         });
     });
 
+### Update
+
+    update = {
+        $set: {
+            platform: "node"
+        }
+    };
+    db.collection("myCollection", function (err, collection) {
+        collection.update("myId", update, function (err) {
+            console.log("Updated");
+        });
+    });
+
 ### Delete
 
     db.collection("myCollection", function (err, collection) {

@@ -119,6 +119,21 @@
                             });
                         });
                     },
+                    update: function (id, update, callback) {
+                        ajax({
+                            method: "PUT",
+                            url: options.endpoint + "/" + collection + "/" + id,
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(update),
+                            username: options.username,
+                            password: options.password,
+                            mongodb: options.mongodb
+                        }, function (err, res) {
+                            callback(err);
+                        });
+                    },
                     remove: function (id, callback) {
                         ajax({
                             method: "DELETE",
