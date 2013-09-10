@@ -26,7 +26,6 @@ Usage
         endpoint: "myDeployment",
         username: "myUsername",
         password: "myPassword"
-        mongodb: "mongodb://localhost/test"
     });
 
 ### Read
@@ -87,4 +86,18 @@ Usage
         collection.remove("myId", function (err) {
             console.log("Deleted");
         });
+    });
+
+Advanced
+--------
+
+### Proxy to other MongoDB instances
+
+Ming has to be started with `enable-proxying` set to `true` for this feature to work. Then, specify the connection string when connecting to Ming as follows:
+
+    db = ming({
+        endpoint: "myDeployment",
+        username: "myUsername",
+        password: "myPassword",
+        connectionString: "mongodb://localhost/test"
     });
