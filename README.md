@@ -1,7 +1,7 @@
 Ming Fu
 =======
 
-A Browser Client for Ming, the Quasi-RESTful Web Service for MongoDB.
+A Browser Client for [Ming](https://bitbucket.org/agrueneberg/ming), the Quasi-RESTful Web Service for MongoDB.
 
 Status
 ------
