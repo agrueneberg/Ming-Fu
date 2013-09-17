@@ -94,6 +94,8 @@ Usage
 
 #### Create
 
+See `examples/file-upload.html` for an example based on HTML forms.
+
     db.grid("fs", function (err, grid) {
         grid.put(blob, "image/jpeg", function (err, response) {
             console.log(response.id);
