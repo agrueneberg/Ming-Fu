@@ -114,9 +114,13 @@
                             password: options.password,
                             connectionString: options.connectionString
                         }, function (err, res) {
-                            callback(err, {
-                                id: res.headers.location.substring(("/" + collection + "/").length, res.headers.location.length)
-                            });
+                            if (err !== null) {
+                                callback(err, null);
+                            } else {
+                                callback(null, {
+                                    id: res.headers.location.substring(("/" + collection + "/").length, res.headers.location.length)
+                                });
+                            }
                         });
                     },
                     update: function (id, update, callback) {
