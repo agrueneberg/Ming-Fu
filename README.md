@@ -28,7 +28,9 @@ Usage
         password: "myPassword"
     });
 
-### Read
+### Documents
+
+#### Read
 
     db.collection("myCollection", function (err, collection) {
         collection.findOne("myId", function (err, doc) {
@@ -36,7 +38,7 @@ Usage
         });
     });
 
-### Query
+#### Query
 
     db.collection("myCollection", function (err, collection) {
         collection.find({
@@ -56,7 +58,7 @@ Usage
         });
     });
 
-### Create
+#### Create
 
     doc = {
         name: "Ming"
@@ -67,7 +69,7 @@ Usage
         });
     });
 
-### Update
+#### Update
 
     update = {
         $set: {
@@ -80,11 +82,21 @@ Usage
         });
     });
 
-### Delete
+#### Delete
 
     db.collection("myCollection", function (err, collection) {
         collection.remove("myId", function (err) {
             console.log("Deleted");
+        });
+    });
+
+### Files
+
+#### Create
+
+    db.grid("fs", function (err, grid) {
+        grid.put(blob, "image/jpeg", function (err, response) {
+            console.log(response.id);
         });
     });
 

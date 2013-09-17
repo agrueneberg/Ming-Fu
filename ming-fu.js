@@ -150,6 +150,36 @@
                         });
                     }
                 });
+            },
+            grid: function (prefix, callback) {
+                callback(null, {
+                    put: function (blob, contentType, callback) {
+                     // Provide default content type.
+                        if (typeof contentType === "function") {
+                            callback = contentType;
+                            contentType = "application/octet-stream";
+                        }
+                        ajax({
+                            method: "POST",
+                            url: options.endpoint + "/" + prefix + ".files",
+                            headers: {
+                                "Content-Type": contentType
+                            },
+                            body: blob,
+                            username: options.username,
+                            password: options.password,
+                            connectionString: options.connectionString
+                        }, function (err, res) {
+                            if (err !== null) {
+                                callback(err, null);
+                            } else {
+                                callback(null, {
+                                    id: res.headers.location.substring(("/" + prefix + ".files/").length, res.headers.location.length)
+                                });
+                            }
+                        });
+                    }
+                });
             }
         };
     };
