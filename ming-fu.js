@@ -66,120 +66,124 @@
         }
         return {
             collection: function (collection, callback) {
-                callback(null, {
-                    find: function (query, opts, callback) {
-                        if (typeof opts === "function") {
-                            callback = opts;
-                            opts = {};
-                        }
-                        ajax({
-                            method: "POST",
-                            url: options.endpoint + "/" + collection + "/query",
-                            params: opts,
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify(query),
-                            username: options.username,
-                            password: options.password,
-                            connectionString: options.connectionString
-                        }, function (err, res) {
-                            var docs;
-                            docs = JSON.parse(res.body);
-                            callback(err, docs);
-                        });
-                    },
-                    findOne: function (id, callback) {
-                        ajax({
-                            method: "GET",
-                            url: options.endpoint + "/" + collection + "/" + id,
-                            username: options.username,
-                            password: options.password,
-                            connectionString: options.connectionString
-                        }, function (err, res) {
-                            var rep;
-                            rep = JSON.parse(res.body);
-                            callback(err, rep);
-                        });
-                    },
-                    insert: function (doc, callback) {
-                        ajax({
-                            method: "POST",
-                            url: options.endpoint + "/" + collection,
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify(doc),
-                            username: options.username,
-                            password: options.password,
-                            connectionString: options.connectionString
-                        }, function (err, res) {
-                            if (err !== null) {
-                                callback(err, null);
-                            } else {
-                                callback(null, {
-                                    id: res.headers.location.substring(("/" + collection + "/").length, res.headers.location.length)
-                                });
+                setTimeout(function () {
+                    callback(null, {
+                        find: function (query, opts, callback) {
+                            if (typeof opts === "function") {
+                                callback = opts;
+                                opts = {};
                             }
-                        });
-                    },
-                    update: function (id, update, callback) {
-                        ajax({
-                            method: "PUT",
-                            url: options.endpoint + "/" + collection + "/" + id,
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify(update),
-                            username: options.username,
-                            password: options.password,
-                            connectionString: options.connectionString
-                        }, function (err, res) {
-                            callback(err);
-                        });
-                    },
-                    remove: function (id, callback) {
-                        ajax({
-                            method: "DELETE",
-                            url: options.endpoint + "/" + collection + "/" + id,
-                            username: options.username,
-                            password: options.password,
-                            connectionString: options.connectionString
-                        }, function (err, res) {
-                            callback(err);
-                        });
-                    }
-                });
+                            ajax({
+                                method: "POST",
+                                url: options.endpoint + "/" + collection + "/query",
+                                params: opts,
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(query),
+                                username: options.username,
+                                password: options.password,
+                                connectionString: options.connectionString
+                            }, function (err, res) {
+                                var docs;
+                                docs = JSON.parse(res.body);
+                                callback(err, docs);
+                            });
+                        },
+                        findOne: function (id, callback) {
+                            ajax({
+                                method: "GET",
+                                url: options.endpoint + "/" + collection + "/" + id,
+                                username: options.username,
+                                password: options.password,
+                                connectionString: options.connectionString
+                            }, function (err, res) {
+                                var rep;
+                                rep = JSON.parse(res.body);
+                                callback(err, rep);
+                            });
+                        },
+                        insert: function (doc, callback) {
+                            ajax({
+                                method: "POST",
+                                url: options.endpoint + "/" + collection,
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(doc),
+                                username: options.username,
+                                password: options.password,
+                                connectionString: options.connectionString
+                            }, function (err, res) {
+                                if (err !== null) {
+                                    callback(err, null);
+                                } else {
+                                    callback(null, {
+                                        id: res.headers.location.substring(("/" + collection + "/").length, res.headers.location.length)
+                                    });
+                                }
+                            });
+                        },
+                        update: function (id, update, callback) {
+                            ajax({
+                                method: "PUT",
+                                url: options.endpoint + "/" + collection + "/" + id,
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(update),
+                                username: options.username,
+                                password: options.password,
+                                connectionString: options.connectionString
+                            }, function (err, res) {
+                                callback(err);
+                            });
+                        },
+                        remove: function (id, callback) {
+                            ajax({
+                                method: "DELETE",
+                                url: options.endpoint + "/" + collection + "/" + id,
+                                username: options.username,
+                                password: options.password,
+                                connectionString: options.connectionString
+                            }, function (err, res) {
+                                callback(err);
+                            });
+                        }
+                    });
+                }, 0);
             },
             grid: function (prefix, callback) {
-                callback(null, {
-                    put: function (blob, contentType, callback) {
-                     // Provide default content type.
-                        if (typeof contentType === "function") {
-                            callback = contentType;
-                            contentType = "application/octet-stream";
-                        }
-                        ajax({
-                            method: "POST",
-                            url: options.endpoint + "/" + prefix + ".files",
-                            headers: {
-                                "Content-Type": contentType
-                            },
-                            body: blob,
-                            username: options.username,
-                            password: options.password,
-                            connectionString: options.connectionString
-                        }, function (err, res) {
-                            if (err !== null) {
-                                callback(err, null);
-                            } else {
-                                callback(null, {
-                                    id: res.headers.location.substring(("/" + prefix + ".files/").length, res.headers.location.length)
-                                });
+                setTimeout(function () {
+                    callback(null, {
+                        put: function (blob, contentType, callback) {
+                         // Provide default content type.
+                            if (typeof contentType === "function") {
+                                callback = contentType;
+                                contentType = "application/octet-stream";
                             }
-                        });
-                    }
-                });
+                            ajax({
+                                method: "POST",
+                                url: options.endpoint + "/" + prefix + ".files",
+                                headers: {
+                                    "Content-Type": contentType
+                                },
+                                body: blob,
+                                username: options.username,
+                                password: options.password,
+                                connectionString: options.connectionString
+                            }, function (err, res) {
+                                if (err !== null) {
+                                    callback(err, null);
+                                } else {
+                                    callback(null, {
+                                        id: res.headers.location.substring(("/" + prefix + ".files/").length, res.headers.location.length)
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }, 0);
             }
         };
     };
