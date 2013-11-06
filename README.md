@@ -6,7 +6,7 @@ A Browser Client for [Ming](https://bitbucket.org/agrueneberg/ming), the Quasi-R
 Status
 ------
 
-Just an experiment. It probably won't make you happy. Move along, there is nothing to see here.
+Experimental, not well tested.
 
 Requirements
 ------------
