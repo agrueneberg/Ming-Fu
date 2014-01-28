@@ -101,17 +101,3 @@ See `examples/file-upload.html` for an example based on HTML forms.
             console.log(response.id);
         });
     });
-
-Advanced
---------
-
-### Proxy to other MongoDB instances
-
-Ming has to be started with `enable-proxying` set to `true` for this feature to work. Then, specify the connection string when connecting to Ming as follows:
-
-    db = ming({
-        endpoint: "myDeployment",
-        username: "myUsername",
-        password: "myPassword",
-        connectionString: "mongodb://localhost/test"
-    });

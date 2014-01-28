@@ -19,9 +19,6 @@
         if (options.username && options.password) {
             xhr.setRequestHeader("Authorization", "Basic " + btoa(options.username + ":" + options.password));
         }
-        if (options.connectionString) {
-            xhr.setRequestHeader("X-Connection-String", options.connectionString);
-        }
         Object.keys(options.headers || {}).forEach(function (name) {
             xhr.setRequestHeader(name, options.headers[name]);
         });
@@ -82,8 +79,7 @@
                                 },
                                 body: JSON.stringify(query),
                                 username: options.username,
-                                password: options.password,
-                                connectionString: options.connectionString
+                                password: options.password
                             }, function (err, res) {
                                 var docs;
                                 docs = JSON.parse(res.body);
@@ -95,8 +91,7 @@
                                 method: "GET",
                                 url: options.endpoint + "/" + collection + "/" + id,
                                 username: options.username,
-                                password: options.password,
-                                connectionString: options.connectionString
+                                password: options.password
                             }, function (err, res) {
                                 var rep;
                                 rep = JSON.parse(res.body);
@@ -112,8 +107,7 @@
                                 },
                                 body: JSON.stringify(doc),
                                 username: options.username,
-                                password: options.password,
-                                connectionString: options.connectionString
+                                password: options.password
                             }, function (err, res) {
                                 if (err !== null) {
                                     callback(err, null);
@@ -133,8 +127,7 @@
                                 },
                                 body: JSON.stringify(update),
                                 username: options.username,
-                                password: options.password,
-                                connectionString: options.connectionString
+                                password: options.password
                             }, function (err, res) {
                                 callback(err);
                             });
@@ -144,8 +137,7 @@
                                 method: "DELETE",
                                 url: options.endpoint + "/" + collection + "/" + id,
                                 username: options.username,
-                                password: options.password,
-                                connectionString: options.connectionString
+                                password: options.password
                             }, function (err, res) {
                                 callback(err);
                             });
@@ -170,8 +162,7 @@
                                 },
                                 body: blob,
                                 username: options.username,
-                                password: options.password,
-                                connectionString: options.connectionString
+                                password: options.password
                             }, function (err, res) {
                                 if (err !== null) {
                                     callback(err, null);
